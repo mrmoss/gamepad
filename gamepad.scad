@@ -188,13 +188,10 @@ module top(hollow=1)
             union()
             {
                 face(0,walls);
-                translate([0,0,height[0]])
-                {
-                    middle(hollow);
-                    translate([0,0,heights[1]-epsilon])
-                        //if(hollow==0) //debug: uncomment to hide top face
-                            face(hollow);
-                }
+                middle(hollow);
+                translate([0,0,heights[1]-epsilon])
+                    //if(hollow==0) //debug: uncomment to hide top face
+                        face(hollow);
             }
             other_holes();
         }
@@ -238,5 +235,5 @@ module gamepad(part=0)
     }
 }
 
-//gamepad(0);
+gamepad(0);
 gamepad(1);
