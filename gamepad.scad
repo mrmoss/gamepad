@@ -5,24 +5,27 @@ js_yoff=-30;
 js_to_wall_yoff=4;
 js_radius=25/2;
 js_board_side=39;
-dist_between_js=25;
-js_walls=2;
+dist_between_js=35;
+js_walls=3;
 box_zoff=0;
 heights=[3,21.5,3];
 button_spacing=25;
-button_radius=12/2;
-dist_between_dpad=110;
+button_radius_1=6;
+button_radius_2=6.5;
+button_inset=heights[2]-1;
+dist_between_dpad=90;
 dpad_yoff=5;
 dpad_to_wall_yoff=2;
-dist_between_handles=140;
+dist_between_handles=130;
 handles_yoff=-40;
 handles_zoff=30;
 handle_length=60;
 handle_xrot=35;
 handle_zrot=30;
-pwr_switch_size=[11.5,4.5];
+pwr_switch_size=[12,4.5];
 pwr_switch_yoff=10;
 usb_yoff=25;
+usb_zoff=1;
 usb_size=[9,10,heights[2]+1];
 screw_hole_r=2.5/2;
 screw_walls=2;
@@ -61,16 +64,16 @@ module handles()
     }
 }
 
-module dpad()
+module dpad(radius)
 {
     translate([-button_spacing/2,0,0])
-        circle(r=button_radius);
+        circle(r=radius);
     translate([button_spacing/2,0,0])
-        circle(r=button_radius);
+        circle(r=radius);
     translate([0,button_spacing/2,0])
-        circle(r=button_radius);
+        circle(r=radius);
     translate([0,-button_spacing/2,0])
-        circle(r=button_radius);
+        circle(r=radius);
 }
 
 module insides()
@@ -100,18 +103,30 @@ module top_holes()
     translate([0,dpad_to_wall_yoff])
     {
         translate([-dist_between_dpad/2,dpad_yoff])
-            dpad();
+            dpad(button_radius_1);
         translate([dist_between_dpad/2,dpad_yoff])
             rotate(45)
-                dpad();
+                dpad(button_radius_1);
     }
-    translate([-6,pwr_switch_yoff])  
+    translate([-pwr_switch_size[0]/2,pwr_switch_yoff])  
         square(size=pwr_switch_size);
+}
+
+module top_insets()
+{
+    translate([0,dpad_to_wall_yoff])
+    {
+        translate([-dist_between_dpad/2,dpad_yoff])
+            dpad(button_radius_2);
+        translate([dist_between_dpad/2,dpad_yoff])
+            rotate(45)
+                dpad(button_radius_2);
+    }
 }
 
 module other_holes()
 {
-    translate([-usb_size[0]/2,usb_yoff,walls])
+    translate([-usb_size[0]/2,usb_yoff,walls+usb_zoff])
         cube(size=usb_size);
 }
 
@@ -154,13 +169,13 @@ module screw_terminal(countersink=0,long=0)
 
 module screw_terminals(bottom=0,long=0)
 {
-    xoff0=35;
+    xoff0=20;
     yoff0=20;
     translate([-xoff0,yoff0,0])
         screw_terminal(bottom,long);
     translate([xoff0,yoff0,0])
         screw_terminal(bottom,long);
-    xoff1=50;
+    xoff1=54;
     yoff1=-20;
     translate([-xoff1,yoff1,0])
         screw_terminal(bottom,long);
@@ -170,13 +185,22 @@ module screw_terminals(bottom=0,long=0)
 
 module face(holes)
 {
-    linear_extrude(height=heights[2])
         difference()
         {
-            offset(walls)
+            linear_extrude(height=heights[2])
+                offset(walls)
                     insides();
             if(holes!=0)
-                top_holes();
+            {
+                union()
+                {
+                    translate([0,0,-2])
+                        linear_extrude(height=heights[2]+4)
+                            top_holes();
+                    linear_extrude(height=button_inset)
+                        top_insets();
+                }
+            }
         }
 }
 
@@ -235,5 +259,5 @@ module gamepad(part=0)
     }
 }
 
-gamepad(0);
+//gamepad(0);
 gamepad(1);
