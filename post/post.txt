@@ -1,0 +1,68 @@
+##Parts
+<img src="https://raw.githubusercontent.com/mrmoss/gamepad/master/images/01.jpg"/>
+Be sure to grab all the parts in the Summary tab.
+
+##Tools
+<img src="https://raw.githubusercontent.com/mrmoss/gamepad/master/images/02.jpg"/>
+Soldering Iron
+Solder
+Drill
+Wire Strippers
+Multimeter
+Hot Glue Gun
+#1 Screwdriver
+4-40 Drill
+4-40 Tap
+
+##Drill and Tap
+<img src="https://raw.githubusercontent.com/mrmoss/gamepad/master/images/03.jpg"/>
+Drill out the screws holes with the 4-40 drill bit.
+
+<img src="https://raw.githubusercontent.com/mrmoss/gamepad/master/images/04.jpg"/>
+Tap the screws holes with the 4-40 tap. Do this slow, and remember that you're making threads here, so back out the bit.
+
+<img src="https://raw.githubusercontent.com/mrmoss/gamepad/master/images/05.jpg"/>
+You can drill and tap the back plate screw holes if you wish, or over drill them such that the screws just fall through. Either way works!
+
+##Buttons
+<img src="https://raw.githubusercontent.com/mrmoss/gamepad/master/images/06.jpg"/>
+I'm not 100% happy with this system...but it works... Glue the columns to the back plate and then the buttons to the columns. Slow and steady here. I experimented with the directions of the buttons, I prefer the style on the left side of the picture above. The right side works, but you need extra wire between each of the buttons. I ended up changing the right side to match the left side.
+
+<img src="https://raw.githubusercontent.com/mrmoss/gamepad/master/images/07.jpg"/>
+Before moving on, put the top plate on and make sure they still click.
+
+##Main Board
+<img src="https://raw.githubusercontent.com/mrmoss/gamepad/master/images/08.jpg"/>
+Glue on the Feather. That's a terrible picture...if only I could retake it...
+
+<img src="https://raw.githubusercontent.com/mrmoss/gamepad/master/images/09.jpg"/>
+Before moving on, make sure the USB lines up with the hole on the top piece.
+
+##Wiring
+<img src="https://raw.githubusercontent.com/mrmoss/gamepad/master/images/10.jpg"/>
+Start with the buttons. Bend the inner legs in a ring like so. Solder them together.
+
+<img src="https://raw.githubusercontent.com/mrmoss/gamepad/master/images/11.jpg"/>
+Glue down your joysticks (the Adafruit ones go directly on the corners, the Sparkfun ones you'll have to eyeball. Now for the soldering. I started with the with the joysticks (blue and yellow wires). Then the buttons (white wires). There's only one ground and power, but you can get three more ground from the sides of the USB connector and the battery connector.
+
+FUTURE WIRE DIAGRAM HERE
+
+##Switch and Battery
+<img src="https://raw.githubusercontent.com/mrmoss/gamepad/master/images/12.jpg"/>
+The last thing to put on is the power switch and battery (in that exact order). Fit the switch in the top plate.
+
+<img src="https://raw.githubusercontent.com/mrmoss/gamepad/master/images/13.jpg"/>
+Solder the switch to ground and EN, and then hot glue it in.
+
+<img src="https://raw.githubusercontent.com/mrmoss/gamepad/master/images/14.jpg"/>
+Hot glue the battery onto the top plate. Plug it in. I'd recommend testing the electronics as you go.
+
+##Firmware Test
+Before closing up, upload the [testing firmware](https://github.com/mrmoss/gamepad/blob/master/firmware/tester/tester.ino). This will spit out the joysticks and buttons to the the Arduino serial monitor. Test all of the axes and buttons before closing up.
+
+##Closing
+<img src="https://raw.githubusercontent.com/mrmoss/gamepad/master/images/15.jpg"/>
+Screw the back plate onto the top plate.
+
+##Real Firmware
+In progress...
